@@ -1,32 +1,26 @@
-const todo = [
-  {
-    "id": 1,
-    "name": "Buy Milk",
-    "isComplete": false
-  },
-  {
-    "id": 2,
-    "name": "Buy Eggs",
-    "isComplete": false
-  },
-  {
-    "id": 3,
-    "name": "Buy Bread",
-    "isComplete": false
-  },
-  {
-    "id": 4,
-    "name": "Make French Toast",
-    "isComplete": false
-  }
-]
 describe('App Initilization',() => {
   it('Loads ToDos on page load',() => {
       cy.server()
-      cy.route('GET','/api/todos', todo)
+      cy.route('GET','/api/todos','fixture:todos')
       cy.visit('/')
 
       cy.get('.todo-list li')
         .should('have.length',4)
+      })
+
+  it('should display an error',() => {
+      cy.server()
+      cy.route({
+        url: '/api/todos',
+        method: 'GET',
+        status: 500,
+        response: {}
+      })
+      cy.visit('/')
+
+      cy.get('.todo-list li')
+        .should('have.length',0)
+      cy.get('.error')
+        .should('be.visible')
       })
 })

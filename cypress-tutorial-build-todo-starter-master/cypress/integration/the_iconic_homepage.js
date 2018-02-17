@@ -31,5 +31,12 @@ describe('Input form',() => {
       .should('contain','New Arrivals')
       // perform the assertion on the number of children i.e. options in the drop down
       .and('have.length','6')
-    })
+  })
+
+  it('filter the list by new arrivals',() => {
+    cy.get('#sort-by-menu-header > div > ul > li:nth-child(2)').click()
+    cy.focused()
+      .should('have.text','New Arrivals1')
+  })
+
   })
