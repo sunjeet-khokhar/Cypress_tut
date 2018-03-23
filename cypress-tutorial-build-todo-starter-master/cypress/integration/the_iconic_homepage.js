@@ -1,12 +1,9 @@
 // npm run dev to launch the app
 // npm run cypress to launch Cypress
 describe('Input form',() => {
-  beforeEach(() => {
-    //cy.visit('http://theiconic.com.au')
-  })
 
   it('searches for a string',() => {
-    cy.visit('http://theiconic.com.au')
+    cy.visit('http://theiconic.co.nz')
     const text_to_search = 'levis'
     cy.get('.icon-search').click()
     cy.get('#search-input')
