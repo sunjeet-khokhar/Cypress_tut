@@ -7,9 +7,12 @@ describe('Air NZ flight search',() => {
   })
 
   it('opens Air NZ home page and confirms that the title is correct',() => {
-    cy.visit('https://flightbookings.airnewzealand.co.nz/vbook/actions/search')
-    cy.title()
-      .should('contain','Air New Zealand')
+    //cy.visit('https://flightbookings.airnewzealand.co.nz/')
+    cy.visit('https://flightbookings.airnewzealand.co.nz/vbook/actions/sessionexpired?__fsk=546087751')
+    //cy.title()
+    //  .should('contain','Air New Zealand')
+    cy.get('#main-container > div > div > form > button')
+      .click()
   })
 
   it('enters the location of origin',() => {
